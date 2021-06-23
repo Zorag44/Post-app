@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="refresh" content="10">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1{text-align: left;}
+    a{text-align: right;}
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+a1{
+    display: block;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+h1{
+    
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+h3{
+    text-align: center;
+}
+h4{
+  text-align: center;
+}
+h5{
+  color: aquamarine;
+  text-align: right;
+}
+p{
+  text-align: center;
+  color:black;
+}
+.active {
+  background-color: #6d04aa;
+}
+div {
+    text-align: center;
+    position: absolute;
+  background-color: rgba(218, 204, 224, 0.726);
+  width: 300px;
+  border: none;
+  padding: 50px;
+  margin-left: 35%;
+  margin-right: 25%;
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  margin-top: 0%;
+}
+
+.active, .collapsible:hover {
+  background-color: #6d04aa;
+}
+
+.content {
+  padding: 0 18px;
+ 
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  margin-right: 100%;
+  margin-bottom: 5%;
+  margin-top: 0%;
+  margin-left: 39%;
+  transition: ease-in;
+}
+h6{
+  color: aquamarine;
+  size: 10px;
+}
+img{
+  border-radius: 20%;
+  margin-left: 1px;
+  margin-right: 10px;
+}
+.button{
+  text-align: center;
+  font-size: 50px;
+}
+</style>
+<body>
+    <ul>
+        <li><a class="active" href="">home</a></li>
+        <li><a href="about">About</a></li>
+        {%if user.is_authenticated%}
+        <li class="a1"><a href="logout">logout</a></li>
+        <li class="ml-5"><a href="profile">Profile</a></li>
+        <h6 class="alert alert-success">You have successfully logged in!!</h6>
+        {%else%}
+        <li class="a1"><a href="login">login</a></li>
+        <li class="a1"><a href="register">register</a></li>
+        {%endif%}
+        <li class="a1"><a href="post/new">+new post</a></li>
+        <li>
+          {%if messages%}
+          {%for message in messages%}
+          <h5 class="alert alert-{{message.tags}}">{{message}}</h5>
+          {%endfor%}
+          {%endif%}
+        </li>
+      </ul>
+      <h4>Latest Posts</h4>
+      {%for post in posts%}
+      <button type="button" class="collapsible"><img class="rounded-circle" src="{{post.author.profile.image.url}}" width="50" height="50"><b> {{post.title}}</b>  <i>by {{post.author}} on {{post.date}}</i></button>
+      <div class="content">
+          <p>
+        {{post.contents}}
+    </p>
+      </div>
+      {%endfor%}
+      <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+        </script>
+        <!-- <embed src="blog1/rr.mp3" loop="true" autostart="true" hidden="true"> -->
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1{text-align: right;}
+    a{text-align: right;}
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+.active {
+  background-color: #6d04aa;
+}
+div {
+    text-align: center;
+    position: absolute;
+  background-color: rgba(218, 204, 224, 0.726);
+  width: 400px;
+  border: none;
+  padding: 50px;
+  margin-left: 35%;
+  margin-right: 25%;
+  margin-bottom: 5%;
+  margin-top: 7%;
+}
+img{
+  border-radius: 40%;
+  size: 15px;
+}
+</style>
+<body>
+  {%load crispy_forms_tags%}
+    <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="">About</a></li>
+        {%if user.is_authenticated%}
+        <li class="a1"><a href="logout">logout</a></li>
+        <li class="ml-5"><a class="active" href="profile">Profile</a></li>
+        <li class="ml-5"><a href="sumpott">contact me</a></li>
+        {%else%}
+        <li class="a1"><a href="login">login</a></li>
+        <li class="a1"><a href="register">register</a></li>
+        {%endif%}
+      </ul>
+      <div class="content-section">
+         <a href="{{user.profile.image.url}}" target="_blank"> <img class="ml-2" src="{{user.profile.image.url}}" width="120" height="120"></a>
+          <h2>{{user.username}}</h2>
+          <h2 class="ml-2">{{user.email}}</h2>
+      
+      <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Update Profile</legend>
+            {{u_form.as_p}}
+            {{p_form.as_p}}
+        </fieldset>
+        <!-- <div class="form-group"> -->
+          <button class="btn btn-outline-info" type="submit">Update</button>
+        <!-- </div> -->
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     h1{text-align: left;}
+    a{text-align: right;}
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+a1{
+    display: block;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+h3{
+    text-align: center;
+}
+.active {
+  background-color: #6d04aa;
+}
+div {
+    text-align: center;
+    position: absolute;
+  background-color: rgba(218, 204, 224, 0.726);
+  width: 300px;
+  border: none;
+  padding: 50px;
+  margin-left: 35%;
+  margin-right: 25%;
+  margin-bottom: 50%;
+  margin-top: 5%;
+}
+</style>
+<body>
+    <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="about">About</a></li>
+        <li class="a1"><a class="active">login</a></li>
+        <li class="a1"><a href="register">register</a></li>
+      </ul>
+      <div class="content-section">
+          <form method="POST">
+              {%csrf_token%}
+              <fieldset class="form-group">
+                  <legend class="border-bottom mb-4">Login</legend>
+                  {{form.as_p}}
+              </fieldset>
+              <!-- <div class="form-group"> -->
+                <button class="btn btn-outline-info" type="submit">Sign In</button>
+              <!-- </div> -->
+              <small class="text-muted">
+                Need an account? <a href="register" class="ml-2">Register here</a>
+            </small>
+          </form>
+          <!-- <div class="border-top pt-3">
+              <small class="text-muted">
+                  Already have an account? <a href="" class="ml-2">Sign In</a>
+              </small>
+          </div> -->
+      </div>
+</body>
+</html>
