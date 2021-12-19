@@ -9,6 +9,10 @@
 <style>
     h1{text-align: right;}
     a{text-align: right;}
+    p{
+      font-size: 200;
+    }
+    
     ul {
   list-style-type: none;
   margin: 0;
@@ -49,5 +53,25 @@ li a:hover {
         {%endif%}
       </ul>
       
+
+  <!-- <button onclick="typeWriter()">Click me</button> -->
+
+  <p id="demo" style="font: size 100px;"></p>
+
+  <script>
+  var i = 0;
+  var txt = 'This wasnt meant to be this 😢';
+  var speed = 50;
+
+  typewriter = () => {
+    // document.getElementById("demo").style.fontSize=medium;
+    document.querySelector("#demo").innerHTML=txt.substring(0,i);
+    i++;
+    if(i<=txt.length){
+      setTimeout(typewriter,speed);
+    }
+  }
+    window.addEventListener("load", typewriter);
+  </script>
 </body>
 </html>
